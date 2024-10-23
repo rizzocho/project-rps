@@ -36,17 +36,33 @@ function playRound(humanChoice, computerChoice) {
   if (humanChoice == computerChoice) {
     console.log('It\'s a tie!');
   } else if ((humanChoice == 'rock' && computerChoice == 'scissors') || (humanChoice == 'paper' && computerChoice == 'rock') || (humanChoice == 'scissors' && computerChoice == 'paper')) {
-    console.log('You WIN!')
+    // console.log(`round ${i} to griffindor`)
     humanScore++
     
   } else {
-    console.log('You LOSE!')
+    // console.log('You LOSE!')
     computerScore++
 
   } console.log(`You have ${humanScore} points, Computer has ${computerScore} points`);
 }
 
-const humanSelection = getHumanChoice();
-const computerSelection = getComputerChoice();
+function playGame() {
+// const humanSelection = getHumanChoice();
+// const computerSelection = getComputerChoice();
 
-playRound(humanSelection, computerSelection);
+for (let i = 1; i <= 5; i++) {
+  console.log(`round ${i}`)
+  playRound(getHumanChoice(), getComputerChoice());
+} console.log(`Final Score - You ${humanScore}, Computer ${computerScore}`)
+
+if (humanScore > computerScore) {
+  console.log('You Win!');
+} else if (humanScore == computerScore) {
+  console.log('It\'s a tie.');
+} else {
+  console.log('You LOSE!!!');
+}
+
+}
+
+playGame()
