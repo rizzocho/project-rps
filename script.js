@@ -8,23 +8,23 @@ rock.addEventListener("click", () => (playRound(1, computerChoice())));
 paper.addEventListener("click", () => (playRound(2, computerChoice())));
 scissors.addEventListener("click", () => (playRound(3, computerChoice())));
 
+let humanScore = 0;
+let computerScore = 0;
 
 function playRound(humanChoice, computerChoice) {
-//   let humanScore = 0;
-//   let computerScore = 0;
+  
   console.log('you picked', humanChoice, 'computer picked', computerChoice);
-//   if (humanChoice == computerChoice) {
-//     console.log('It\'s a tie!');
-//   } else if ((humanChoice == 'rock' && computerChoice == 'scissors') || (humanChoice == 'paper' && computerChoice == 'rock') || (humanChoice == 'scissors' && computerChoice == 'paper')) {
-//     // console.log(`round ${i} to griffindor`)
-//     humanScore++
-    
-//   } else {
-//     // console.log('You LOSE!')
-//     computerScore++
+  if (humanChoice === computerChoice) {
+    console.log('It\'s a tie!');
+  } else if (humanChoice - computerChoice === 1 || humanChoice - computerChoice === -2) {
+    console.log('You win');
+    humanScore++;
+  } else {
+    console.log('You LOSE');
+    computerScore++;
+  } console.log(`You have ${humanScore} points, Computer has ${computerScore} points`);
+} 
 
-//   } console.log(`You have ${humanScore} points, Computer has ${computerScore} points`);
-}
 
 // function playGame() {
 // // const humanSelection = getHumanChoice();
