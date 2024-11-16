@@ -4,13 +4,32 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
+  <style>
+    .score {
+      display: flex;
+      justify-content: space-around;
+    }
+    .buttons {
+      display: flex;
+      justify-content: center;
+    }
+
+  </style>
 </head>
 <body>
-  <div>
+  <div class="buttons">
     <button id="btnRock">Rock</button>
     <button id="btnPaper">Paper</button>
     <button id="btnScissors">Scissors</button>
   </div>
+  <div class="score">
+    <div id="humanTally"></div>
+    <div id="computerTally"></div>
+  </div>
+  
+  <div class="logs">
+  </div>
+
   <script src="script.js"></script>
 </body>
 </html>

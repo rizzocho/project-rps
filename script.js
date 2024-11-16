@@ -1,48 +1,68 @@
+const buttons = document.querySelectorAll("button");
 const rock = document.querySelector("#btnRock");
 const paper = document.querySelector("#btnPaper");
 const scissors = document.querySelector("#btnScissors");
+const logs = document.querySelector(".logs");
+const humanTally = document.querySelector("#humanTally");
+const computerTally = document.querySelector("#computerTally");
+const hTally = document.createTextNode("You have 0 points");
+const cTally = document.createTextNode("Computer has 0 points");
+humanTally.appendChild(hTally);
+computerTally.appendChild(cTally);
 
+const rps = ["nothing", "rock", "paper", "scissors"];
+const logText = ["you tie", "points", "noooooo"];
 let computerChoice =() => Math.floor(Math.random() * 3) + 1;
 
 rock.addEventListener("click", () => (playRound(1, computerChoice())));
 paper.addEventListener("click", () => (playRound(2, computerChoice())));
 scissors.addEventListener("click", () => (playRound(3, computerChoice())));
 
+
 let humanScore = 0;
 let computerScore = 0;
 
 function playRound(humanChoice, computerChoice) {
-  
-  console.log('you picked', humanChoice, 'computer picked', computerChoice);
   if (humanChoice === computerChoice) {
-    console.log('It\'s a tie!');
-  } else if (humanChoice - computerChoice === 1 || humanChoice - computerChoice === -2) {
-    console.log('You win');
-    humanScore++;
+    const roundPara = document.createElement("p");
+    const resultPara = document.createTextNode("You tie");
+    logs.appendChild(roundPara);
+    roundPara.appendChild(resultPara);
+    } else if (humanChoice - computerChoice === 1 || humanChoice - computerChoice === -2) {
+      humanScore++;
+      const roundPara = document.createElement("p");
+      const resultPara = document.createTextNode("points");
+      logs.appendChild(roundPara);
+      roundPara.appendChild(resultPara);
+      humanTally.textContent = `You have ${humanScore} points`;
+      if (humanScore === 5) {
+        youWin();
+      }
   } else {
-    console.log('You LOSE');
     computerScore++;
-  } console.log(`You have ${humanScore} points, Computer has ${computerScore} points`);
+    const roundPara = document.createElement("p");
+    const resultPara = document.createTextNode("nooooo!");
+    logs.appendChild(roundPara);
+    roundPara.appendChild(resultPara);
+    computerTally.textContent = `Computer has ${computerScore} points`;
+    if (computerScore === 5) {
+      youLose();
+    }
+  }   
 } 
 
+function youWin() {
+  const roundPara = document.createElement("p");
+    const resultPara = document.createTextNode("Winner Winner Chicken Dinner!");
+    logs.appendChild(roundPara);
+    roundPara.appendChild(resultPara);
+    buttons.forEach(button => button.style.display = "none");
+}
 
-// function playGame() {
-// // const humanSelection = getHumanChoice();
-// // const computerSelection = getComputerChoice();
-
-// // for (let i = 1; i <= 5; i++) {
-// //   console.log(`round ${i}`)
-// //   playRound(getHumanChoice(), getComputerChoice());
-// // } console.log(`Final Score - You ${humanScore}, Computer ${computerScore}`)
-
-// // if (humanScore > computerScore) {
-// //   console.log('You Win!');
-// // } else if (humanScore == computerScore) {
-// //   console.log('It\'s a tie.');
-// // } else {
-// //   console.log('You LOSE!!!');
-// // }
-
-// }
-
-// playGame()
+function youLose() {
+  const roundPara = document.createElement("p");
+    const resultPara = document.createTextNode("La who sa her!");
+    logs.appendChild(roundPara);
+    roundPara.appendChild(resultPara);
+    buttons.forEach(button => button.style.display = "none");
+}
